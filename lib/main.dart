@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,11 +30,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Html(
-        data: htmlDoc,
-      ),
-    ));
+        backgroundColor: Colors.grey.withOpacity(0.1),
+        body: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: const BoxDecoration(
+                color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.grey)]),
+            width: 1000,
+            child: Scrollbar(
+              isAlwaysShown: false,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/icon_app.png',
+                      width: 200,
+                      height: 200,
+                    ),
+                    Html(
+                      data: htmlDoc,
+                      style: {
+                        "body": Style(
+                          fontSize: FontSize(16.0),
+                        ),
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 
   dynamic htmlDoc = """<p><strong>Privacy Policy</strong></p>
@@ -139,5 +161,5 @@ class _MyHomePageState extends State<MyHomePage> {
 <p><br></p>
 <p><strong>Questions</strong></p>
 <p><br></p>
-<p>If you have any questions about this Privacy Policy, please contact us.</p>  """;
+<p>If you have any questions about this Privacy Policy, please contact <a href='#'>manhtai831@gmail.com</a>.</p>  """;
 }
